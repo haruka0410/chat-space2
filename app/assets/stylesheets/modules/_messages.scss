@@ -30,6 +30,9 @@
           @include flex ();
           justify-content: flex-end;
           color: $section-color;
+          a {
+            color: $section-color;
+          }
           &__pencil {
             padding-right: 5px;
           }

@@ -2,15 +2,18 @@
   .side_bar__user-name
     .side_bar__user-name__list
       .side_bar__user-name__list__left
-        masa
+        = current_user.name
       %ul.side_bar__user-name__list__right
         %li.side_bar__user-name__list__right__pencil
-          = icon('fas', 'edit')
+          = link_to "#" do
+            = icon('fas', 'edit')
         %li.side_bar__user-name__list__right__fog
-          = icon('fas', 'cog')
+          = link_to edit_user_path(current_user) do
+            = icon('fas', 'cog')
   .side_bar__group-list
     .side_bar__group-list__message
-      .side_bar__group-list__message__group-name
-        techcamp
-      .side_bar__group-list__message__new-message
-        まだメッセージがありません
+      = link_to "#" do
+        .side_bar__group-list__message__group-name
+          techcamp
+        .side_bar__group-list__message__new-message
+          まだメッセージがありません
