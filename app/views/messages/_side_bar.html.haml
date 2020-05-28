@@ -5,15 +5,16 @@
         = current_user.name
       %ul.side_bar__user-name__list__right
         %li.side_bar__user-name__list__right__pencil
-          = link_to "#" do
+          = link_to new_group_path do
             = icon('fas', 'edit')
         %li.side_bar__user-name__list__right__fog
           = link_to edit_user_path(current_user) do
             = icon('fas', 'cog')
   .side_bar__group-list
-    .side_bar__group-list__message
-      = link_to "#" do
-        .side_bar__group-list__message__group-name
-          techcamp
-        .side_bar__group-list__message__new-message
-          まだメッセージがありません
+    - current_user.groups.each do |group|
+      .side_bar__group-list__message
+        = link_to group_messages_path(group) do
+          .side_bar__group-list__message__group-name
+            = group.name
+          .side_bar__group-list__message__new-message
+            = group.show_last_message
