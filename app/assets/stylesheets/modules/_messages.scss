@@ -43,9 +43,6 @@
       height: calc(100vh - 90px);
       background-color: #2f3e51;
       padding: 0 20px;
-      a {
-        text-decoration: none;
-      }
       &__message__group-name {
         padding: 20px 0 5px 0;
         font-size: 15px;
@@ -91,17 +88,12 @@
         align-items: center;
         color: #38aef0;
         font-size: 16px;
-        a {
-          text-decoration: none;
-          color: #38aef0;
-        }
       }
     }
     &__message-list {
       background-color: #fafafa;
       height: calc(100vh - 190px);
       padding: 35px 40px 0;
-      overflow: scroll;
       &__messages__top {
         @include flex ();
         margin-bottom: 12px;
@@ -128,7 +120,7 @@
       padding: 0 40px;
       @include flex ();
       align-items: center;
-      .new-message {
+      &__new-message {
         @include flex ();
         height: 50px;
         width: 100%;
