@@ -28,11 +28,11 @@ $(function(){
                 `;
     $(".ChatMembers").append(html);
   };
-
-  function addMember(UserId, UserName){
-    let html = ``
-  }
  
+  let userIds = []
+  $(".js-chat-member").each(function(index, el){
+    userIds.push(el,getAttribute('id'));
+  });
 
   $(".SettingGroupForm__input").on("keyup", function(){
     let input = $(this).val();
@@ -40,7 +40,7 @@ $(function(){
       type: "get",
       url: "/users",
       dataType: "json",
-      data: {keyword: input},
+      data: {keyword: input, user_ids: userIds},
     })
 
     .done(function(users){
@@ -49,7 +49,6 @@ $(function(){
       if (users.length !== 0){
         users.forEach (function(user){
           addUser(user);
-          addMember(user);
         });
       } else if (input.length == 0){
         return false
@@ -67,11 +66,14 @@ $(function(){
   $(document).on("click", ".ChatMember__add", function(){
     UserId = $(this).attr("data-user-id");
     UserName = $(this).attr("data-user-name");
+    userIds.push(UserId);
     $(this).parent().remove();
     addDeleteUser(UserId, UserName);
   })
 
   $(document).on("click", ".ChatMember__remove", function(){
+    const removedUserId = $(this).siblings('input').val();
+    userIds = userIds.filter(id => id != removedUserId);
     $(this).parent().remove();
   })
 });
